@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Unit Tests
+        run: npm test
+      - name: Integration Tests
+        env:
+          SW_TEST_API_KEY: ${{ secrets.SW_TEST_API_KEY }}
+        # Only run integration tests if the secret is present (e.g., skip on forks)
+        if: env.SW_TEST_API_KEY != ''
+        run: npm run test:integration

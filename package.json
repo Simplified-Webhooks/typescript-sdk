@@ -1,0 +1,46 @@
+{
+  "name": "@simplified-webhooks/sdk",
+  "version": "1.0.0",
+  "description": "The official TypeScript SDK for Simplified (Airtable) Webhooks",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {  
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "dev": "tsup src/index.ts --format cjs,esm --watch --dts",
+    "lint": "eslint src/**/*.ts",
+    "test": "vitest run tests/client.test.ts",
+    "test:integration": "vitest run tests/integration.test.ts"
+  },
+  "keywords": [
+    "airtable",
+    "webhooks",
+    "sdk",
+    "api"
+  ],
+  "author": "Synergetic GmbH",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Simplified-Webhooks/typescript-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Simplified-Webhooks/typescript-sdk/issues"
+  },
+  "homepage": "https://www.simplified-webhooks.com",
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}
